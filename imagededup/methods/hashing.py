@@ -47,7 +47,7 @@ class Hashing:
     methods are provided to accomplish these tasks.
     """
 
-    def __init__(self, verbose: bool = True) -> None:
+    def __init__(self, model_name: str, verbose: bool = True) -> None:
         """
         Initialize hashing class.
 
@@ -439,14 +439,14 @@ class PHash(Hashing):
     ```
     """
 
-    def __init__(self, verbose: bool = True) -> None:
+    def __init__(self, model_name: str, verbose: bool = True) -> None:
         """
         Initialize perceptual hashing class.
 
         Args:
             verbose: Display progress bar if True else disable it. Default value is True.
         """
-        super().__init__(verbose)
+        super().__init__(model_name, verbose)
         self.__coefficient_extract = (8, 8)
         self.target_size = (32, 32)
 
@@ -511,14 +511,14 @@ class AHash(Hashing):
     ```
     """
 
-    def __init__(self, verbose: bool = True) -> None:
+    def __init__(self, model_name: str, verbose: bool = True) -> None:
         """
         Initialize average hashing class.
 
         Args:
             verbose: Display progress bar if True else disable it. Default value is True.
         """
-        super().__init__(verbose)
+        super().__init__(model_name, verbose)
         self.target_size = (8, 8)
 
     def _hash_algo(self, image_array: np.ndarray):
@@ -571,14 +571,14 @@ class DHash(Hashing):
     ```
     """
 
-    def __init__(self, verbose: bool = True) -> None:
+    def __init__(self, model_name: str, verbose: bool = True) -> None:
         """
         Initialize difference hashing class.
 
         Args:
             verbose: Display progress bar if True else disable it. Default value is True.
         """
-        super().__init__(verbose)
+        super().__init__(model_name, verbose)
         self.target_size = (9, 8)
 
     def _hash_algo(self, image_array):
@@ -631,14 +631,14 @@ class WHash(Hashing):
     ```
     """
 
-    def __init__(self, verbose: bool = True) -> None:
+    def __init__(self, model_name: str, verbose: bool = True) -> None:
         """
         Initialize wavelet hashing class.
 
         Args:
             verbose: Display progress bar if True else disable it. Default value is True.
         """
-        super().__init__(verbose)
+        super().__init__(model_name, verbose)
         self.target_size = (256, 256)
         self.__wavelet_func = 'haar'
 
