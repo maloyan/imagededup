@@ -8,7 +8,7 @@ import torch
 from torchvision.transforms import transforms
 
 from imagededup.handlers.search.retrieval import get_cosine_similarity
-from imagededup.utils.data_generator import img_dataloader, MobilenetV3
+from imagededup.utils.data_generator import img_dataloader, CNNModel
 from imagededup.utils.general_utils import (
     generate_relative_names,
     get_files_to_remove,
@@ -39,7 +39,7 @@ class CNN:
     methods are provided to accomplish these tasks.
     """
 
-    def __init__(self, verbose: bool = True) -> None:
+    def __init__(self, model_name: str ='mobilenet_v3_small', verbose: bool = True) -> None:
         """
         Initialize a pytorch MobileNet model v3 that is sliced at the last convolutional layer.
         Set the batch size for pytorch dataloader to be 64 samples.
@@ -47,6 +47,7 @@ class CNN:
         Args:
             verbose: Display progress bar if True else disable it. Default value is True.
         """
+        self.model_name = model_name
         self.target_size = (256, 256)
         self.batch_size = 64
         self.logger = return_logger(
@@ -60,7 +61,7 @@ class CNN:
         """
         Build MobileNet v3 model sliced at the last convolutional layer with global average pooling added. Also initialize the corresponding preprocessing transform.
         """
-        self.model = MobilenetV3()
+        self.model = CNNModel(model_name = self.model_name)
         self.logger.info(
             'Initialized: MobileNet v3 pretrained on ImageNet dataset sliced at GAP layer'
         )

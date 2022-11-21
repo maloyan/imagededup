@@ -9,7 +9,7 @@ def return_logger(name: str) -> logging.Logger:
     if not len(logger.handlers):
         log_formatter = logging.Formatter('%(asctime)-s: %(levelname)-s %(message)s')
         # set logging level
-        logger.setLevel(logging.DEBUG)
+        logger.setLevel(logging.ERROR)
 
         # Direct logs to stderr
         console_handler = logging.StreamHandler()
